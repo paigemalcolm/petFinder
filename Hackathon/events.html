@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class = "heading">
+    <h2 class = "title"> See What's Happening! <br></h1>
+    <h3> Locations Events Search Something</h3>
+    </div>
+    <div class = bottom>
+        <h3 class = "button-display">
+            <button onclick="subscribe()">Subscribe!</button>
+            <script>
+            addEventListener('load', async () => {
+                let sw = await navigator.serviceWorker.register('./sw.js')
+                console.log(sw)
+            })
+
+            async function subscribe() {
+                let sw = await navigator.serviceWorker.ready;
+                let push = await sw.pushManager.subscribe({
+                    userVisibility: true,
+                    applicationServerKey: 'BAyHLL57tfaESXuMce08bjrB0B-ncK7TU3ttTwvOFx4xznl-TAKrQ4IJ6c_WJrD3BlKMWvYlrXkIDSPfCgNeZ6A'
+                })
+                console.log(JSON.stringify(push))
+            }
+            </script> 
+        </h3>
+    </div>
+</body>
